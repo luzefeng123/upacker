@@ -11,14 +11,14 @@
     "email": "aeo1234@qq.com"
   },
   "license": "GPL-2.0",
-  "repository": "https://github.com/aeo123/upacker.git",
+  "repository": "https://github.com/luzefeng123/upacker.git",
   "icon": "unknown",
-  "homepage": "https://github.com/aeo123/upacker.git",
-  "doc": "https://github.com/aeo123/upacker.git",
+  "homepage": "https://github.com/luzefeng123/upacker.git",
+  "doc": "https://github.com/luzefeng123/upacker.git",
   "site": [
     {
       "version": "latest",
-      "URL": "https://github.com/aeo123/upacker.git",
+      "URL": "https://github.com/luzefeng123/upacker.git",
       "filename": "Null for git package",
       "VER_SHA": "master"
     }
