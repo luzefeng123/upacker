@@ -262,17 +262,6 @@ static uint8_t frame_encode(upacker_inst_t packer, uint8_t *data, uint16_t size)
         return 0;
     }
 
-//    tmp[0] = 0x55;
-//    tmp[1] = size & 0xff;
-//    tmp[2] = (size >> 8) & 0x3f; //低14位用来保存size;header校验4位
-//    crc = tmp[0] ^ tmp[1] ^ tmp[2];
-//    tmp[2] |= (crc  &0x0C) << 4; //tmp[2][7:6]保存header检验[3:2]
-//    tmp[3] = 0x03 & (crc >> 4);  //tmp[3][1:0]保存header校验[5:4]
-//    for (int i = 0; i < size; i++)
-//    {
-//        crc ^= data[i];
-//    }
-
 		tmp[0] = 0x55;
     tmp[1] = size & 0xff;
     tmp[2] = (size >> 8) & 0x3f; //低14位用来保存size;header校验4位
@@ -280,12 +269,7 @@ static uint8_t frame_encode(upacker_inst_t packer, uint8_t *data, uint16_t size)
     tmp[3] = crc; //tmp[3]保存header检验
 		
 		data_crc = CRC16(data,size);
-  
-//    for (int i = 0; i < size; i++)
-//    {
-//        crc ^= data[i];
-//    } 
-		
+
 		tmp[4] = data_crc >> 8; // crc  校验,低8位
     tmp[5] = data_crc & 0xff; //crc 校验,高8位
 		

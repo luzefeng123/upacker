@@ -235,18 +235,20 @@ uint8_t Upacker::frame_encode(uint8_t *data, uint16_t size)
     }
 
     tmp[0] = 0x55;
-tmp[1] = size & 0xff;
-tmp[2] = (size >> 8) & 0x3f; //低14位用来保存size;header校验4位
-crc = tmp[0] ^ tmp[1] ^ tmp[2];
-tmp[3] = crc; //tmp[3]保存header检验
-
+    tmp[1] = size & 0xff;
+    tmp[2] = (size >> 8) & 0x3f; //低14位用来保存size;header校验4位
+    crc = tmp[0] ^ tmp[1] ^ tmp[2];
+    tmp[3] = crc; //tmp[3]保存header检验
     data_crc =  CRC16(data,size);
-
     tmp[4] = data_crc >> 8; // crc  校验,低8位
     tmp[5] = data_crc & 0xff; //crc 校验,高8位
+    uint8_t *data_buf = (uint8_t*)malloc(size+6); // 创建一个缓冲区
+    memcpy(data_buf,tmp,6);
+    memcpy(data_buf+6,data,size);
 
-    this->send(tmp, 6);
-    this->send(data, size);
+   // this->send(tmp, 6);
+    this->send(data_buf, size+6);
+    free(data_buf);
 
     return 1;
 }
