@@ -31,7 +31,7 @@ extern "C"
 #endif
                 uint16_t flen; //frame长度
                 uint8_t calc;  //frame校验计算值
-                uint8_t check; //frame校验值
+                uint16_t check; //frame校验值
                 uint8_t state; //frame解析状态
                 uint16_t cnt;  //frame数据接收cnt
 
